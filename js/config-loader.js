@@ -70,9 +70,6 @@ async function loadConfig() {
     fbLinks.forEach(el => el.href = CONFIG.facebook);
 
     /* ── Manifest PWA dinámico ── */
-    const iconSvg = (size, rx) =>
-      `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${size} ${size}'><rect width='${size}' height='${size}' rx='${rx}' fill='${encodeURIComponent(CONFIG.colorPrimario)}'/><text y='.85em' font-size='${Math.round(size*.72)}' x='${Math.round(size*.1)}'>${CONFIG.emoji}</text></svg>`;
-
     const manifest = {
       name:             CONFIG.nombre,
       short_name:       CONFIG.nombreCorto,
@@ -83,8 +80,8 @@ async function loadConfig() {
       theme_color:      CONFIG.colorPrimario,
       orientation:      'portrait',
       icons: [
-        { src: iconSvg(192, 40),  sizes: '192x192',  type: 'image/svg+xml', purpose: 'any maskable' },
-        { src: iconSvg(512, 100), sizes: '512x512',  type: 'image/svg+xml', purpose: 'any maskable' },
+        { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+        { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
       ]
     };
     const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });

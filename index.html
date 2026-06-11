@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Mi Menú">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍱</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FF6B35'/><text y='.85em' font-size='72' x='14'>🍱</text></svg>">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" id="pwa-manifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,8 +38,8 @@
 </nav>
 <!-- BANNER PWA — debajo del nav -->
 <div id="pwa-banner" style="display:none;position:sticky;top:68px;left:0;right:0;z-index:999;background:#2C1A0E;align-items:center;gap:10px;padding:8px 16px;">
-  <span style="font-size:15px;flex-shrink:0;">📲</span>
-  <span style="flex:1;font-size:11px;color:#FFD4B8;line-height:1.4;">Instala la app </span>
+  <img src="/favicon.png" alt="Logo" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;">
+  <span style="flex:1;font-size:11px;color:#FFD4B8;line-height:1.4;">Instala la app · funciona sin internet</span>
   <button id="pwa-install-btn" style="padding:5px 14px;border-radius:20px;border:none;background:var(--naranja);color:#fff;font-family:var(--fb);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;">Instalar</button>
   <button id="pwa-dismiss-btn" style="background:none;border:none;font-size:14px;color:#FFD4B8;cursor:pointer;padding:2px 4px;flex-shrink:0;">✕</button>
 </div>
@@ -371,7 +371,7 @@
 <div class="ios-hint-overlay" id="ios-hint-overlay" onclick="closeIosHint()">
   <div class="ios-hint" onclick="event.stopPropagation()">
     <button class="ios-hint-close" onclick="closeIosHint()">✕</button>
-    <span class="ios-hint-emoji">📲</span>
+    <img src="/apple-touch-icon.png" alt="Logo" style="width:64px;height:64px;object-fit:contain;border-radius:14px;margin-bottom:8px;">
     <div class="ios-hint-title">Instala la app</div>
     <div class="ios-hint-steps">
       <div class="ios-step"><span class="ios-step-num">1</span><span>Toca el botón <strong>Compartir</strong> <span class="ios-share-icon">⎙</span> en Safari</span></div>
