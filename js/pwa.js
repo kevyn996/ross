@@ -20,7 +20,7 @@
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    document.getElementById('pwa-banner')?.classList.add('visible');
+    const b = document.getElementById('pwa-banner'); if(b) b.style.display='flex';
   });
 
   document.getElementById('pwa-install-btn')?.addEventListener('click', async () => {
@@ -28,12 +28,12 @@
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     deferredPrompt = null;
-    document.getElementById('pwa-banner')?.classList.remove('visible');
+    const b = document.getElementById('pwa-banner'); if(b) b.style.display='none';
   });
 
   /* X cierra solo por esta sesión — al volver aparece de nuevo */
   document.getElementById('pwa-dismiss-btn')?.addEventListener('click', () => {
-    document.getElementById('pwa-banner')?.classList.remove('visible');
+    const b = document.getElementById('pwa-banner'); if(b) b.style.display='none';
   });
 })();
 
