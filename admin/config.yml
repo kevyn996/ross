@@ -1,0 +1,180 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "config"
+    label: "Configuración del negocio"
+    files:
+      - name: "general"
+        label: "Datos generales"
+        file: "data/config.json"
+        format: json
+        fields:
+          - { label: "Nombre del negocio",    name: nombre,      widget: string }
+          - { label: "Nombre corto",           name: nombreCorto, widget: string }
+          - { label: "Emoji del negocio",      name: emoji,       widget: string }
+          - { label: "Tagline / descripción",  name: tagline,     widget: text }
+          - { label: "Descripción SEO",        name: descripcion, widget: string }
+          - { label: "Teléfono",               name: telefono,    widget: string }
+          - { label: "WhatsApp (solo números)",name: wa,          widget: string }
+          - { label: "Email",                  name: email,       widget: string }
+          - { label: "Horario de atención",    name: horario,     widget: string }
+          - { label: "Color principal",        name: colorPrimario, widget: color }
+          - { label: "Color de fondo",         name: colorBg,     widget: color }
+          - { label: "Símbolo de moneda",      name: moneda,      widget: string }
+          - { label: "Año",                    name: año,         widget: string }
+
+          - label: "Precios base por categoría"
+            name: catPrecios
+            widget: object
+            fields:
+              - { label: "Libre de grasa (S/)",  name: libre,    widget: number }
+              - { label: "Dieta balanceada (S/)", name: dieta,    widget: number }
+              - { label: "Full proteína (S/)",    name: proteina, widget: number }
+
+          - label: "Menús"
+            name: menus
+            widget: object
+            fields:
+
+              # ── LIBRE DE GRASA ──
+              - label: "Menú: Libre de grasa"
+                name: libre
+                widget: object
+                fields:
+                  - label: "Platos principales"
+                    name: principales
+                    widget: list
+                    fields:
+                      - { label: "ID único",     name: id,    widget: string }
+                      - { label: "Nombre",        name: name,  widget: string }
+                      - { label: "Descripción",   name: desc,  widget: string }
+                      - { label: "URL de imagen", name: img,   widget: string }
+                      - { label: "Precio extra",  name: price, widget: number, default: 0 }
+                      - label: "Etiquetas"
+                        name: tags
+                        widget: list
+                        field: { label: Etiqueta, name: tag, widget: string }
+
+                  - label: "Contornos"
+                    name: contornos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Bebidas / Jugos"
+                    name: jugos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Postres"
+                    name: postres
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+              # ── DIETA BALANCEADA ──
+              - label: "Menú: Dieta balanceada"
+                name: dieta
+                widget: object
+                fields:
+                  - label: "Platos principales"
+                    name: principales
+                    widget: list
+                    fields:
+                      - { label: "ID único",     name: id,    widget: string }
+                      - { label: "Nombre",        name: name,  widget: string }
+                      - { label: "Descripción",   name: desc,  widget: string }
+                      - { label: "URL de imagen", name: img,   widget: string }
+                      - { label: "Precio extra",  name: price, widget: number, default: 0 }
+                      - label: "Etiquetas"
+                        name: tags
+                        widget: list
+                        field: { label: Etiqueta, name: tag, widget: string }
+
+                  - label: "Contornos"
+                    name: contornos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Bebidas / Jugos"
+                    name: jugos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Postres"
+                    name: postres
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+              # ── FULL PROTEÍNA ──
+              - label: "Menú: Full proteína"
+                name: proteina
+                widget: object
+                fields:
+                  - label: "Platos principales"
+                    name: principales
+                    widget: list
+                    fields:
+                      - { label: "ID único",     name: id,    widget: string }
+                      - { label: "Nombre",        name: name,  widget: string }
+                      - { label: "Descripción",   name: desc,  widget: string }
+                      - { label: "URL de imagen", name: img,   widget: string }
+                      - { label: "Precio extra",  name: price, widget: number, default: 0 }
+                      - label: "Etiquetas"
+                        name: tags
+                        widget: list
+                        field: { label: Etiqueta, name: tag, widget: string }
+
+                  - label: "Contornos"
+                    name: contornos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Bebidas / Jugos"
+                    name: jugos
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
+
+                  - label: "Postres"
+                    name: postres
+                    widget: list
+                    fields:
+                      - { label: "ID único", name: id,    widget: string }
+                      - { label: "Nombre",   name: name,  widget: string }
+                      - { label: "Emoji",    name: icon,  widget: string }
+                      - { label: "Precio extra", name: price, widget: number, default: 0 }
