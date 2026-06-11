@@ -907,7 +907,19 @@ function toggleMapa() {
   const wrap = document.getElementById('mapa-wrap');
   mapaVisible = !mapaVisible;
   wrap.style.display = mapaVisible ? 'block' : 'none';
-  if (mapaVisible && !map) {
+  if (!mapaVisible) return;
+
+  /* Sin conexión: mostrar aviso en lugar del mapa */
+  if (!navigator.onLine) {
+    document.getElementById('map').innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;background:#FDEBD0;gap:8px;">' +
+      '<span style="font-size:2rem">📡</span>' +
+      '<span style="font-size:.82rem;color:#9A7B5A;text-align:center;padding:0 16px">Sin conexión — escribe tu dirección manualmente</span>' +
+      '</div>';
+    return;
+  }
+
+  if (!map) {
     setTimeout(() => {
       map = L.map('map').setView([10.4806, -66.9036], 13); // Caracas por defecto
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -919,7 +931,7 @@ function toggleMapa() {
         reverseGeocode(lat, lng);
       });
     }, 100);
-  } else if (mapaVisible && map) {
+  } else {
     map.invalidateSize();
   }
 }
@@ -932,6 +944,12 @@ function setMapPin(lat, lng) {
 }
 
 async function reverseGeocode(lat, lng) {
+  /* Siempre ponemos las coordenadas de respaldo primero */
+  document.getElementById('cf-dir').value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+  if (!navigator.onLine) {
+    document.getElementById('geo-status').textContent = '📍 Coordenadas guardadas (sin conexión para obtener dirección)';
+    return;
+  }
   try {
     const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`);
     const data = await res.json();
@@ -939,7 +957,7 @@ async function reverseGeocode(lat, lng) {
     document.getElementById('cf-dir').value = addr;
     document.getElementById('geo-status').textContent = '📍 Ubicación marcada en el mapa';
   } catch(e) {
-    document.getElementById('cf-dir').value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+    document.getElementById('geo-status').textContent = '📍 Coordenadas guardadas';
   }
 }
 
